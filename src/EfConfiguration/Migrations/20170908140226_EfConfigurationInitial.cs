@@ -38,7 +38,7 @@ AS
     UPDATE c
     SET LastUpdated = GETUTCDATE()
     FROM cfg.ConfigurationValues c
-        JOIN Inserted i ON c.Key = i.Key
+        JOIN Inserted i ON c.[Key] = i.[Key]
 ");
         }
 
