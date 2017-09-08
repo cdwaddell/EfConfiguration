@@ -18,7 +18,7 @@ namespace Titanosoft.EfConfiguration
             optionsAction?.Invoke(efOptions);
             var dbOptions = new DbContextOptionsBuilder<ConfigurationContext>();
             var migrationsAssembly = typeof(EfConfigurationExtensions).GetTypeInfo().Assembly.GetName().Name;
-            dbOptions.UseSqlServer(
+            dbOptions = dbOptions.UseSqlServer(
                 connectionStringConfig.GetConnectionString(efOptions.ConnectionStringName), 
                 options => options.MigrationsAssembly(migrationsAssembly)
             );
