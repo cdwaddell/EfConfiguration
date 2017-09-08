@@ -30,14 +30,15 @@ namespace Titanosoft.EfConfiguration.Migrations
                 table: "ConfigurationValues",
                 column: "LastUpdated");
 
-            migrationBuilder.ExecSql(@"
+            migrationBuilder.Sql(@"
 CREATE TRIGGER TR_ConfigurationValues_UpdateTimeEntry
 ON cfg.ConfigurationValues
 AFTER UPDATE
 AS
-    UPDATE cfg.ConfigurationValues
+    UPDATE c
     SET LastUpdated = GETUTCDATE()
-    WHERE Key IN (SELECT DISTINCT Key FROM Inserted)
+    FROM cfg.ConfigurationValues c
+        JOIN Inserted i ON c.Key = i.Key
 ");
         }
 
