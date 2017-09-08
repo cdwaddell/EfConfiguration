@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/cdwaddell/EfConfiguration</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageProjectUrl>https://github.com/cdwaddell/EfConfiguration</PackageProjectUrl>
-    <VersionPrefix>1.0.1</VersionPrefix>
+    <VersionPrefix>1.0.1</VersionPrefix> 
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
@@ -32,6 +32,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
