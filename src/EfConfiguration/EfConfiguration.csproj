@@ -22,7 +22,10 @@
 
   <ItemGroup>
     <Content Include="Migrations.sql">
-      <PackagePath>SqlScripts</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <BuildAction>Content</BuildAction>
+      <CopyToOutput>true</CopyToOutput>
     </Content>
   </ItemGroup>
 
