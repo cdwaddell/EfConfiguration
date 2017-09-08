@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace EfConfiguration
+namespace Titanosoft.EfConfiguration
 {
     public class ConfigurationContext : DbContext
     {
@@ -19,6 +19,9 @@ namespace EfConfiguration
 
                 t.Property(x => x.Key)
                     .HasMaxLength(64);
+
+                t.Property(x => x.LastUpdated)
+                    .HasField("_lastUpdated");
 
                 t.HasIndex(x => x.LastUpdated);
 

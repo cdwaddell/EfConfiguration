@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace EfConfiguration
+namespace Titanosoft.EfConfiguration
 {
     public class EfConfigurationSource : IConfigurationSource
     {

@@ -3,7 +3,7 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace EfConfiguration
+namespace Titanosoft.EfConfiguration
 {
     public static class EfConfigurationExtensions
     {

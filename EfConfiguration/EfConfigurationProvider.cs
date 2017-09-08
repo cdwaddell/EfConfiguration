@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace EfConfiguration
+namespace Titanosoft.EfConfiguration
 {
     public class EfConfigurationProvider : ConfigurationProvider, IDisposable
     {

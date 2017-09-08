@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace EfConfiguration
+namespace Titanosoft.EfConfiguration
 {
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ConfigurationContext>
     {

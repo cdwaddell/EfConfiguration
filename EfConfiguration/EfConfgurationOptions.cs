@@ -1,4 +1,4 @@
-﻿namespace EfConfiguration
+﻿namespace Titanosoft.EfConfiguration
 {
     public class EfConfgurationOptions
     {

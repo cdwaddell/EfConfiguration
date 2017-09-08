@@ -6,12 +6,19 @@
     <RootNamespace>Titanosoft.EfConfiguration</RootNamespace>
     <Authors>CD Waddell</Authors>
     <Company>Titanosoft</Company>
+    <Description>EfConfiguration is a dotnet Standard 2.0 library for pulling configuration settings from a database. With support for auto reloading of settings.</Description>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/cdwaddell/EfConfiguration/master/LICENSE</PackageLicenseUrl>
+    <Copyright>2017 CD Waddell</Copyright>
+    <RepositoryUrl>https://github.com/cdwaddell/EfConfiguration</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageProjectUrl>https://github.com/cdwaddell/EfConfiguration</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
   </ItemGroup>
 

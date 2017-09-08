@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace EfConfiguration.Migrations
+namespace Titanosoft.EfConfiguration.Migrations
 {
-    public partial class EfConfigInitial : Migration
+    public partial class EfConfigurationInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(name: "cfg");
+            migrationBuilder.EnsureSchema(
+                name: "cfg");
 
             migrationBuilder.CreateTable(
                 name: "ConfigurationValues",
@@ -28,6 +29,16 @@ namespace EfConfiguration.Migrations
                 schema: "cfg",
                 table: "ConfigurationValues",
                 column: "LastUpdated");
+
+            migrationBuilder.ExecSql(@"
+CREATE TRIGGER TR_ConfigurationValues_UpdateTimeEntry
+ON cfg.ConfigurationValues
+AFTER UPDATE
+AS
+    UPDATE cfg.ConfigurationValues
+    SET LastUpdated = GETUTCDATE()
+    WHERE Key IN (SELECT DISTINCT Key FROM Inserted)
+");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
