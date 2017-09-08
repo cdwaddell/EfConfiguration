@@ -48,3 +48,9 @@ If you need to change the connection string name or how often to check for chang
             options.PollingInterval = 1000;
         });
 ```
+
+### How do I use the settings?
+
+These settings are used like any other setting in dotnet core. First you can inject ```IConfgiuration``` and access items by key. Or you can use ```IOptions```. What sets this library appart from others is that it supports ```IOptionsSnapshot``` so your application can have its settings changed at runtime. You can read more about these configuration options here.
+
+[Configuration in ASP.Net Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration)
