@@ -30,7 +30,7 @@ namespace Titanosoft.EfConfiguration.Migrations
                 table: "ConfigurationValues",
                 column: "LastUpdated");
 
-            migrationBuilder.Sql(@"
+            migrationBuilder.ExecSql(@"
 CREATE TRIGGER TR_ConfigurationValues_UpdateTimeEntry
 ON cfg.ConfigurationValues
 AFTER UPDATE
