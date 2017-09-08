@@ -39,11 +39,12 @@ public Startup(IHostingEnvironment env)
 
 ### What about advanced configuration?
 
-If you need to change the connection string name, you can specify it in the options:
+If you need to change the connection string name or how often to check for changes, you can specify it in the options:
 ```csharp
     var builder = new ConfigurationBuilder()
         ...
         .AddEntityFameworkValues(options => {
-            options.
+            options.ConnectionStringName = "DefaultConnection";
+            options.PollingInterval = 1000;
         });
 ```
