@@ -12,6 +12,8 @@
     <RepositoryUrl>https://github.com/cdwaddell/EfConfiguration</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageProjectUrl>https://github.com/cdwaddell/EfConfiguration</PackageProjectUrl>
+    <Version>1.0.0.0</Version>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
