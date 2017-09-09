@@ -10,9 +10,10 @@ using Titanosoft.EfConfiguration;
 namespace Titanosoft.EfConfiguration.Migrations
 {
     [DbContext(typeof(ConfigurationContext))]
-    partial class ConfigurationContextModelSnapshot : ModelSnapshot
+    [Migration("20170909140347_EfConfigurationDefaultDate")]
+    partial class EfConfigurationDefaultDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

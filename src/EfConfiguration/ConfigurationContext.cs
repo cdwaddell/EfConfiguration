@@ -21,6 +21,7 @@ namespace Titanosoft.EfConfiguration
                     .HasMaxLength(64);
 
                 t.Property(x => x.LastUpdated)
+                    .HasDefaultValueSql("GETUTCDATE()")
                     .HasField("_lastUpdated");
 
                 t.HasIndex(x => x.LastUpdated);
