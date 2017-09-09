@@ -1,5 +1,7 @@
 # Titanosoft.EfConfiguration
 
+![Build Status](https://cdanielwaddell.visualstudio.com/_apis/public/build/definitions/991b95e6-1640-4127-b933-3b0aaddb919b/3/badge)
+
 ### What is EfConfiguration?
 
 EfConfiguration is a dotnet Standard 2.0 library for pulling configuration settings from a database. With support for auto reloading of settings.
