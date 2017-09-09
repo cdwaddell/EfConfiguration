@@ -6,7 +6,7 @@ namespace Titanosoft.EfConfiguration
     {
         public string Key { get; set; }
         public string Value { get; set; }
-
+        //This method is directly accessed by Entity Framework, users shouldn't set/change it
 #pragma warning disable 649
         private DateTime _lastUpdated;
 #pragma warning restore 649

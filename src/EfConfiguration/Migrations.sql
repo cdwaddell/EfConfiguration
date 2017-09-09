@@ -1,1 +1,1 @@
-﻿
+﻿--This is a placeholder that is replaced by the build process

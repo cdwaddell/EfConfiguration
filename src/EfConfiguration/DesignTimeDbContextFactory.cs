@@ -3,15 +3,14 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace Titanosoft.EfConfiguration
 {
-    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ConfigurationContext>
+    //This is a utility class that allows migrations to be setup inside of a dotnet Standard library
+    internal class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ConfigurationContext>
     {
         public ConfigurationContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<ConfigurationContext>();
 
-            var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=CoreBlogger;Trusted_Connection=True;MultipleActiveResultSets=true";
-
-            builder.UseSqlServer(connectionString);
+            builder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=CoreBlogger;Trusted_Connection=True;MultipleActiveResultSets=true");
 
             return new ConfigurationContext(builder.Options);
         }

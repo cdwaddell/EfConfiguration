@@ -26,28 +26,41 @@ namespace Titanosoft.EfConfiguration
         private readonly CancellationTokenSource _cancellationToken;
         private Task _backgroundWorker;
 
+        /// <inheritdoc />
+        /// <summary>
+        /// The initial load for the Data dictionary, this also configures the background worker
+        /// </summary>
         public override void Load()
         {
             using (var dbContext = new ConfigurationContext(_dbOptions))
             {
-                dbContext.Database.Migrate();
+                try
+                {
+                    dbContext.Database.Migrate();
+                }
+                catch (InvalidOperationException)
+                {
+                    dbContext.Database.EnsureCreated();
+                }
 
                 _lastRequested = DateTime.UtcNow;
-                Data = GetData(dbContext);
+                Data = GetDictionaryFromDatabase(dbContext);
             }
             
             _backgroundWorker = Task.Factory.StartNew(token =>
             {
                 while (!((CancellationToken)token).IsCancellationRequested)
                 {
-                    if (HasChanged)
-                        UpdateDatabase();
+                    if (HasChanged) UpdateFromDatabase();
 
                     Thread.Sleep(_efOptions.PollingInterval);
                 }
             }, _cancellationToken.Token, _cancellationToken.Token);
         }
         
+        /// <summary>
+        /// Flag the values as changed if the lastupdated date of an item is after the last run
+        /// </summary>
         private bool HasChanged
         {
             get
@@ -57,6 +70,8 @@ namespace Titanosoft.EfConfiguration
                     using (var context = new ConfigurationContext(_dbOptions))
                     {
                         var now = DateTime.UtcNow;
+
+                        //Query the database as quickly as you can to determine if anything has been updated
                         var lastUpdated = context.Values
                             .Where(c => c.LastUpdated <= now)
                             .OrderByDescending(v => v.LastUpdated)
@@ -77,11 +92,14 @@ namespace Titanosoft.EfConfiguration
             }
         }
 
-        private void UpdateDatabase()
+        /// <summary>
+        /// Query the database and update the dictionary in a thread safe way
+        /// </summary>
+        private void UpdateFromDatabase()
         {
             using (var dbContext = new ConfigurationContext(_dbOptions))
             {
-                var dict = GetData(dbContext);
+                var dict = GetDictionaryFromDatabase(dbContext);
                 lock (LockObject)
                 {
                     Data = dict;
@@ -90,11 +108,17 @@ namespace Titanosoft.EfConfiguration
             }
         }
         
-        private static IDictionary<string, string> GetData(ConfigurationContext dbContext)
+        /// <summary>
+        /// Retreives the configuration dictionary from the database
+        /// </summary>
+        /// <param name="dbContext"></param>
+        /// <returns>The KeyValuePairs that represent configuration entries from the database</returns>
+        private static IDictionary<string, string> GetDictionaryFromDatabase(ConfigurationContext dbContext)
         {
             try
             {
-                return dbContext.Values.ToDictionary(c => c.Key, c => c.Value);
+                return dbContext.Values
+                    .ToDictionary(c => c.Key, c => c.Value);
             }
             catch (SqlException)
             {
@@ -104,7 +128,9 @@ namespace Titanosoft.EfConfiguration
 
         public void Dispose()
         {
+            //since we have a background thread, we need to stop it
             _cancellationToken.Cancel();
+            //then dispose of it
             _backgroundWorker?.Dispose();
             _backgroundWorker = null;
         }
