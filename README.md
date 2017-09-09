@@ -6,7 +6,7 @@ EfConfiguration is a dotnet Standard 2.0 library for pulling configuration setti
 
 ### How do I get started?
 
-First install the nuget package (coming soon)
+First install the nuget package:
 
 ```
 PM> Install-Package Titanosoft.EfConfiguration
